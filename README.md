@@ -75,9 +75,25 @@ should be zero:
 })()
 ```
 
+## Security
+
+- Every content page carries a Content-Security-Policy meta locked to
+  `'self'` — no third-party scripts, styles, fonts or images can load, and
+  the site itself contains no JavaScript. Keep new pages on this policy.
+- Fonts are self-hosted in `fonts/` (also why the site works in mainland
+  China). The site makes zero external requests.
+- HTTPS is enforced at the GitHub Pages level.
+
+## Performance
+
+- Images are resized to at most 1400px wide (2x the widest the column
+  renders) and recompressed. Every `<img>` carries intrinsic
+  `width`/`height` (no layout shift), `loading="lazy"` below the fold,
+  and `decoding="async"`. Run any new image through the same treatment.
+- The two latin font files are preloaded; latin-ext subsets load only if
+  a page ever uses those characters.
+
 ## Notes
 
-- Fonts currently load from Google Fonts, which is blocked in mainland China.
-  Self-hosting the two Newsreader `woff2` files is an outstanding task.
 - Essay content was imported from an older Squarespace site; original
   publication dates are preserved.
