@@ -1,4 +1,6 @@
-/* davidcwei.com — shared styles. Page-specific rules stay inline on each page. */
+/* davidcwei.com — the site's only stylesheet.
+   Pages carry no inline CSS: every page links this file and inherits the
+   responsive behaviour below, so anything new is mobile-ready by default. */
 
 :root {
   --paper:    #f7f7f5;
@@ -9,6 +11,15 @@
   --measure:  34rem;
   --serif: "Newsreader", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+
+  /* Size of every small mono label — dates, group headings, captions,
+     footer links. Defined once so it can be raised for phones in one
+     place; anything new should use var(--micro) rather than a literal. */
+  --micro: 0.7rem;
+}
+
+@media (max-width: 30rem) {
+  :root { --micro: 0.78rem; }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,10 +48,32 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* --- responsive foundations -------------------------------------
+   These four rules are why new content stays mobile-safe. Media can
+   never exceed the column, long unbroken strings (URLs, code) wrap
+   instead of forcing a horizontal scrollbar, and anything genuinely
+   wide scrolls inside itself rather than widening the page. */
+
+img, svg, video, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+}
+
+p, li, h1, h2, h3, h4, blockquote, figcaption, td, th {
+  overflow-wrap: break-word;
+}
+
+pre, table { max-width: 100%; overflow-x: auto; }
+
+table { display: block; border-collapse: collapse; }
+
+/* The reading column. Width is capped in rem and padded in rem, so it
+   fluidly fills any screen narrower than the cap without media queries. */
+
 .page {
   max-width: var(--measure);
   margin: 0 auto;
-  padding: clamp(3.5rem, 11vh, 8rem) 1.5rem clamp(4rem, 12vh, 8rem);
+  padding: clamp(3.5rem, 11vh, 8rem) clamp(1.25rem, 4vw, 1.5rem) clamp(4rem, 12vh, 8rem);
 }
 
 /* --- navigation ------------------------------------------------ */
@@ -48,13 +81,15 @@ body {
 .nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.4rem;
+  gap: 0.9rem 1.4rem;
   margin-bottom: clamp(3rem, 8vh, 5rem);
   font-style: italic;
   font-size: 0.95em;
 }
 
 .nav a {
+  display: inline-block;
+  padding: 0.35rem 0;
   color: var(--ink-soft);
   text-decoration: none;
   transition: color 120ms ease;
@@ -73,7 +108,7 @@ body {
 /* --- base type -------------------------------------------------- */
 
 h1 {
-  margin: 0 0 2.5rem;
+  margin: 0 0 1.5rem;
   font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.35rem);
   font-weight: 400;
   letter-spacing: -0.015em;
@@ -98,19 +133,24 @@ hr {
   margin: clamp(2.5rem, 7vh, 4rem) 0;
 }
 
+/* Placeholder line on pages that have no content yet. */
+.soon { color: var(--ink-soft); font-style: italic; }
+
 /* --- footer links ---------------------------------------------- */
 
 .elsewhere {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.6rem;
+  gap: 0.6rem 1.6rem;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: var(--micro);
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
 .elsewhere a {
+  display: inline-block;
+  padding: 0.35rem 0;
   color: var(--ink-soft);
   text-decoration: none;
   transition: color 120ms ease;
@@ -125,6 +165,68 @@ hr {
   border-radius: 1px;
 }
 
+/* --- writing index ---------------------------------------------- */
+
+.group {
+  margin: 3rem 0 0.85rem;
+  font-family: var(--mono);
+  font-size: var(--micro);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.group:first-of-type { margin-top: 0; }
+
+.posts {
+  margin-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.group + .posts { margin-top: 0; }
+
+.post {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+}
+
+.post time {
+  flex: 0 0 5.5rem;
+  font-family: var(--mono);
+  font-size: var(--micro);
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+
+.post .title {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 0.055em;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 140ms ease;
+}
+
+.post:hover .title,
+.post:focus-visible .title { text-decoration-color: var(--accent); }
+
+/* Narrow screens: stack the date above the title and give the whole
+   row a taller touch target. */
+@media (max-width: 30rem) {
+  .post {
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1.1rem 0;
+  }
+  .post time { flex: none; }
+}
+
 /* --- essay pages ------------------------------------------------ */
 
 .essay h1 { margin: 0 0 0.85rem; }
@@ -133,7 +235,7 @@ hr {
   display: block;
   margin: 0 0 clamp(2.5rem, 6vh, 3.5rem);
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: var(--micro);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -157,7 +259,7 @@ hr {
 
 .essay blockquote {
   margin: 2.2rem 0;
-  padding-left: 1.3rem;
+  padding-left: clamp(1rem, 3vw, 1.3rem);
   border-left: 1px solid var(--rule);
   font-style: italic;
   font-size: 1.03em;
@@ -169,19 +271,16 @@ hr {
 
 .essay .center { text-align: center; }
 
-.essay .indent { padding-left: 1.3rem; }
+.essay .indent { padding-left: clamp(1rem, 3vw, 1.3rem); }
 
 .essay img {
   display: block;
-  max-width: 100%;
-  height: auto;
   margin: 2.2rem auto;
 }
 
 .essay .lead {
   display: block;
   width: 100%;
-  height: auto;
   margin: 0 0 clamp(2.5rem, 6vh, 3.5rem);
 }
 
@@ -194,7 +293,7 @@ hr {
 .essay figcaption {
   margin-top: 0.7rem;
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: var(--micro);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
