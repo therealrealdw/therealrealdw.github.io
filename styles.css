@@ -178,6 +178,15 @@ hr {
   margin: 2.2rem auto;
 }
 
+.essay .lead {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 clamp(2.5rem, 6vh, 3.5rem);
+}
+
+.essay-meta:has(+ .lead) { margin-bottom: 1.6rem; }
+
 .essay figure { margin: 2.2rem 0; }
 
 .essay figure img { margin: 0 auto; }
