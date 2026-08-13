@@ -33,13 +33,9 @@
 
 <p>As part of their iOS 15 update, Apple is rolling out three new features aimed at Child Safety. They released a bundle of information that you can find <a href="https://www.apple.com/child-safety/"><em>here</em></a>. If you can’t be bothered, you’ve come to the right place because I’ve read it for you. They are described below in the order from least to most controversial. It is important to point out that the features will initially be U.S. only and presumably be rolled out to other countries on a case by case basis.</p>
 
-<blockquote><p>New Siri and Search prompts</p>
+<h3>New Siri and Search prompts</h3><p>This part is fairly straightforward. Essentially, if someone asks their Apple device how they can report child exploitation, then Siri and Search will direct them to more specific resources. If Siri or Search detects someone actively looking for child exploitation material, then they will be presented with prompts and warnings to rethink their decision.</p>
 
-</blockquote><p>This part is fairly straightforward. Essentially, if someone asks their Apple device how they can report child exploitation, then Siri and Search will direct them to more specific resources. If Siri or Search detects someone actively looking for child exploitation material, then they will be presented with prompts and warnings to rethink their decision.</p>
-
-<blockquote><p>Communication safety in Messages</p>
-
-</blockquote><p>Then Apple steps it up a notch by introducing a function that detects sexually explicit photos when sent through the native Messages app. This feature is only active on child accounts (under 18) in Family Sharing (part of iCloud). It is also important to note that the detection of sexually explicit photos occurs on-device, part of the reason why this update has raised some criticism.</p>
+<h3>Communication safety in Messages</h3><p>Then Apple steps it up a notch by introducing a function that detects sexually explicit photos when sent through the native Messages app. This feature is only active on child accounts (under 18) in Family Sharing (part of iCloud). It is also important to note that the detection of sexually explicit photos occurs on-device, part of the reason why this update has raised some criticism.</p>
 
 <p><em>Teenagers (12 to 17)</em></p>
 
@@ -51,15 +47,13 @@
 
 <p>Some people have taken issue with the fact that the actual detection of the photos is done on-device. Apple achieves this through machine learning algorithms. It is clear that Apple is very aware of this objection. They create an entire <a href="https://www.apple.com/child-safety/pdf/Expanded_Protections_for_Children_Frequently_Asked_Questions.pdf"><em>FAQ</em></a>, most of which is dedicated to reassuring people’s expected privacy concerns. The gist is that Apple claims it does not have access to the images, evaluations, notifications or interventions. One of the FAQ questions is whether this feature will prevent children in abusive homes from seeking help. I personally found this interesting as I wouldn't have imagined kids needing to send nude photos for that purpose but I guess it may need to be done as a proof-of-evidence process to peers or would-be-helpers on certain occasions. Another angle I didn’t personally think of was mentioned by Kendra Albert, a lawyer at Harvard Law School’s Cyberlaw Clinic. He tweets on August 6,</p>
 
-<p class="center"> “these "child protection" features are going to get queer kids kicked out of their homes, beaten, or worse”</p>
+<p class="center">“these "child protection" features are going to get queer kids kicked out of their homes, beaten, or worse”</p>
 
 <p class="center">“I just know (calling it now) that these machine learning algorithms are going to flag transition photos. Good luck texting your friends a picture of you if you have "female presenting nipples.”</p>
 
 <p>Personally, I think Apple has done their homework and probably came to the conclusion that the pros of this feature outweigh the cons. I do agree that there will be some unforeseeable consequences that will negatively impact the kids involved in ways that Apple has not considered. More importantly, I personally feel this will simply encourage users to migrate to an alternative messaging platform.</p>
 
-<blockquote><p>Child Sexual Abuse Material (CSAM) Detection</p>
-
-</blockquote><p>This is by far the most contentious component of the features. The way it functions is also highly technical. So technical that Apple includes several detailed summaries to explain the various technologies involved. The three technologies involved are <em>NeuralHash, Private Set Intersection </em>and<em> Threshold Secret Sharing</em>.  Before I attempt to break down these technologies, the grossly oversimplified version is:</p>
+<h3>Child Sexual Abuse Material (CSAM) Detection</h3><p>This is by far the most contentious component of the features. The way it functions is also highly technical. So technical that Apple includes several detailed summaries to explain the various technologies involved. The three technologies involved are <em>NeuralHash, Private Set Intersection</em> and <em>Threshold Secret Sharing</em>. Before I attempt to break down these technologies, the grossly oversimplified version is:</p>
 
 <p class="center">Apple will create a digital thumbprint for all photo and video content users choose to sync with iCloud. Those thumbprints will be matched against a list of existing thumbprints, generated from a database of known CSAM material from the National Center for Missing and Exploited Children (NCMEC). This matching process is done on-device. Once a certain number of matches is met, the matching content is then revealed and forwarded for manual review by Apple. If the report is validated by the human reviewer, the user’s account will be disabled and the report will be forwarded to NCMEC and their law enforcement partners.</p>
 
@@ -71,21 +65,21 @@
 
 <p>Similar images are given the same hash, even if they differ by scale, colour, size or other superficial changes while images deemed different are given separate hashes. Apple gives the example below.</p>
 
-  
-      <img src="https://images.squarespace-cdn.com/content/v1/60ced6780c7c872f03d6ff03/1629077419953-BNW5EEDPJNK9HUCY5MG0/NeuralHash.png?format=original" alt=""/>
-  
+ 
+ <img src="https://images.squarespace-cdn.com/content/v1/60ced6780c7c872f03d6ff03/1629077419953-BNW5EEDPJNK9HUCY5MG0/NeuralHash.png?format=original" alt=""/>
+ 
 
 <p>The NCMEC maintains a database of known CSAM material. Each piece of material is given a unique hash. This set of hashes from the NCMEC goes through a ‘blinding’ process and is stored on user devices. This process ensures that no one can infer anything about the underlying CSAM content from looking at the hash database.</p>
 
 <p><em>Private Set Intersection</em> (PSI)</p>
 
-<p>The Apple device will scan all content synced with iCloud and assign a hash to all of that material. It will then match those hashes with the NCMEC hash database securely stored on those devices. If a match is found on-device, it will generate what Apple calls a <em>Safety Voucher </em>and uploaded to the iCloud server. This next part is where it becomes exceptionally technical. What I surmised is that PSI is broken down into two steps. First step is on-device and the second step is server side. The reason why Apple has created this further step is actually to strengthen security and privacy. At the first step, even if someone can decrypt and extract the hash matches on-device, those matching results are only arbitrary numbers. It will just look like a random set of 1s and 0s. The second step is done on the server side. The matching safety vouchers are combined with the server side blinding secret to decrypt and reveal the content. The way I understand this as a total layman is that the NCMEC hash database stored on Apple devices are pre-scrambled by Apple so no one can infer anything about the original content from those matching hashes. Once the matching hashes are uploaded onto iCloud, Apple is able to decrypt them and unscramble them because only the server side knows how they were scrambled in the first place. Without additional steps or technologies, it would mean that Apple would be able to decrypt and view the contents each time there was a match but they actually combine it with something called <em>Threshold Secret Sharing</em> to further improve privacy.</p>
+<p>The Apple device will scan all content synced with iCloud and assign a hash to all of that material. It will then match those hashes with the NCMEC hash database securely stored on those devices. If a match is found on-device, it will generate what Apple calls a <em>Safety Voucher</em> and uploaded to the iCloud server. This next part is where it becomes exceptionally technical. What I surmised is that PSI is broken down into two steps. First step is on-device and the second step is server side. The reason why Apple has created this further step is actually to strengthen security and privacy. At the first step, even if someone can decrypt and extract the hash matches on-device, those matching results are only arbitrary numbers. It will just look like a random set of 1s and 0s. The second step is done on the server side. The matching safety vouchers are combined with the server side blinding secret to decrypt and reveal the content. The way I understand this as a total layman is that the NCMEC hash database stored on Apple devices are pre-scrambled by Apple so no one can infer anything about the original content from those matching hashes. Once the matching hashes are uploaded onto iCloud, Apple is able to decrypt them and unscramble them because only the server side knows how they were scrambled in the first place. Without additional steps or technologies, it would mean that Apple would be able to decrypt and view the contents each time there was a match but they actually combine it with something called <em>Threshold Secret Sharing</em> to further improve privacy.</p>
 
-<p><em>Threshold Secret Sharing </em>(TSS)</p>
+<p><em>Threshold Secret Sharing</em> (TSS)</p>
 
 <p>Essentially, instead of being able to decrypt the Safety Voucher each time there was a match, Apple adds TSS to ensure that it takes a certain number of matches before Apple is able to decrypt and view the image itself. Supposedly the addition of this step means that the chances of an incorrect flagging will be 1 in a trillion. Apple explains it using the following Example</p>
 
-<p class="center"> if a secret is split into one-thousand shares, and the threshold is ten, the secret can be reconstructed from any eleven of the one-thousand shares. However, if only ten shares are available, then nothing is revealed about the secret.</p>
+<p class="center">if a secret is split into one-thousand shares, and the threshold is ten, the secret can be reconstructed from any eleven of the one-thousand shares. However, if only ten shares are available, then nothing is revealed about the secret.</p>
 
 <p>Before that threshold is reached, the server only learns the number of matches for a particular user. What is fascinating is that Apple introduces a further step here to obfuscate that number. They do this by having the devices send out a random number of dummy vouchers to look like encrypted CSAM data. Apple servers initially only learns the combined number of matches, fake and real. Only if the threshold is reached will the server become able to identify the actual matches.</p>
 
@@ -99,17 +93,17 @@
 
 <p>I reviewed a bunch of different criticisms. There is an <a href="https://appleprivacyletter.com/"><em>open letter</em></a> that outlines the main public and industry issues with these new features. Overall, the criticisms can be summarised in the following categories.</p>
 
-<ol><li><p><em>Apple is spying on us through a ‘backdoor’ and telling our secrets to the government. </em><br>I don’t personally think this criticism holds any water for what the features currently do. You can certainly infer a lot of things and get very mad if you were simply reading headlines but in its current form, I think a lot of people are just misunderstanding how these features function.</p>
+<ol><li><p><em>Apple is spying on us through a ‘backdoor’ and telling our secrets to the government.</em> <br>I don’t personally think this criticism holds any water for what the features currently do. You can certainly infer a lot of things and get very mad if you were simply reading headlines but in its current form, I think a lot of people are just misunderstanding how these features function.</p>
 
 </li><li><p><em>These features will have unintended consequences and victims.</em><br>It’s pretty hard to debate this one. I’ve already touched on this above. I am certain that there will be issues with these features that will hurt kids, families and relationships in ways that Apple hasn’t anticipated.</p>
 
 </li><li><p><em>These features may not be a problem now but they open a door we cannot close.</em><br>I think this is by far the strongest argument. Apple reiterates several times through their materials that the CSAM detection is only matching known materials from the NCMEC. They also explicitly state that they will never give in to government demands to change the matching targets for other purposes. I personally don’t doubt this pledge from Apple as it stands today but people and organisations are prone to change and there is little guarantee that the target won’t be moved in the future. The on-device scanning component of these new features are controversial because there is no real ‘opting out’. Once these features get rolled out into other countries, you simply cannot rule out other types of materials becoming targets for matching. Even if this only remains in the US, the possibility of scope creep is ever present and Apple cannot assure that the target will always be CSAM material.</p>
 
-</li><li><p><em>Bad actors using this feature to frame innocent people<br></em>I found this criticism while looking at some random threads. I am not versed enough in the technical aspects to understand whether this criticism is possible or not but I’ll leave it here in full so you can make your own decision.</p>
+</li><li><p><em>Bad actors using this feature to frame innocent people</em><br>I found this criticism while looking at some random threads. I am not versed enough in the technical aspects to understand whether this criticism is possible or not but I’ll leave it here in full so you can make your own decision.</p>
 
 </li></ol>
 
-<p class="center">An attacker can easily produce natural images that have a specified perceptual Hash. An attacker can generate a meme image which looks normal but has a hash which is inside the CSAM database. (he can easily get one of these bad hash values by computing the neural hash of a known offensive image) Then he send you a mail, then you save the image to your cloud because you find it funny (or because your phone automatically back-up your mail to your cloud) , and a collision is registered and you get arrested (when the manual review fails, for example if the attacker has steganographically hidden offensive content in those images).</p>
+<p class="center">An attacker can easily produce natural images that have a specified perceptual Hash. An attacker can generate a meme image which looks normal but has a hash which is inside the CSAM database. (he can easily get one of these bad hash values by computing the neural hash of a known offensive image) Then he send you a mail, then you save the image to your cloud because you find it funny (or because your phone automatically back-up your mail to your cloud), and a collision is registered and you get arrested (when the manual review fails, for example if the attacker has steganographically hidden offensive content in those images).</p>
 
 <p>Personally, I find the scope-creep argument the most convincing. Technology is akin to Pandora’s box. Once you put it out there into the world, no amount of good intention will prevent it from being used in ways you did not first intend. It is just the nature of things and I think Apple took a step that it won’t be able to walk back on.</p>
 

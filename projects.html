@@ -10,51 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <style>
-  /* --- project list ------------------------------------------------ */
-
-  .projects { border-top: 1px solid var(--rule); }
-
-  .project {
-    padding: 1.35rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .project-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .project-head a {
-    color: var(--ink);
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-decoration-thickness: 0.055em;
-    text-underline-offset: 0.18em;
-    transition: text-decoration-color 140ms ease;
-  }
-
-  .project-head a:hover,
-  .project-head a:focus-visible { text-decoration-color: var(--accent); }
-
-  .meta {
-    flex: none;
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-
-  .project p {
-    margin: 0;
-    color: var(--ink-soft);
-    font-size: 0.97em;
-    line-height: 1.55;
-    text-wrap: pretty;
-  }
+  .soon { color: var(--ink-soft); font-style: italic; }
 </style>
 </head>
 <body>
@@ -70,33 +26,7 @@
 
   <h1 class="reveal">Projects</h1>
 
-  <div class="projects reveal">
-
-    <div class="project">
-      <div class="project-head">
-        <a href="#">Project name</a>
-        <span class="meta">2026 — Active</span>
-      </div>
-      <p>One sentence on what it does and who it's for. Resist the second sentence; if the project needs more explaining, it deserves a writing post you can link to from here.</p>
-    </div>
-
-    <div class="project">
-      <div class="project-head">
-        <a href="#">Project name</a>
-        <span class="meta">2025 — Shipped</span>
-      </div>
-      <p>The status label on the right does real work — it tells a reader whether they're looking at something live, something parked, or something you built once and learned from.</p>
-    </div>
-
-    <div class="project">
-      <div class="project-head">
-        <a href="#">Project name</a>
-        <span class="meta">2024 — Archived</span>
-      </div>
-      <p>Archived projects are worth keeping on the page. A record of what you tried is more interesting than a page of only successes.</p>
-    </div>
-
-  </div>
+  <p class="soon reveal">Reining in my chaos — I&rsquo;ll work on this soon.</p>
 
 </main>
 </body>

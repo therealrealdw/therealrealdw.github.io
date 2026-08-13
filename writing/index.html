@@ -13,6 +13,18 @@
 <style>
   /* --- post list -------------------------------------------------- */
 
+  .group {
+    margin: 3rem 0 0.85rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .group:first-of-type { margin-top: 0; }
+
   .posts { border-top: 1px solid var(--rule); }
 
   .post {
@@ -64,6 +76,15 @@
 
   <h1 class="reveal">Writing</h1>
 
+  <h2 class="group reveal">Pinned</h2>
+  <div class="posts reveal">
+    <a class="post" href="/writing/by-what-values-shall-i-live">
+      <time datetime="2021-07-04">Jul 2021</time>
+      <span class="title">By What Values Shall I Live?</span>
+    </a>
+  </div>
+
+  <h2 class="group reveal">Older</h2>
   <div class="posts reveal">
     <a class="post" href="/writing/swooping-in-the-name-of-parental-love">
       <time datetime="2021-09-14">Sep 2021</time>
@@ -104,10 +125,6 @@
     <a class="post" href="/writing/sisyphus-the-absurd-hero">
       <time datetime="2021-07-11">Jul 2021</time>
       <span class="title">Sisyphus, the Absurd Hero</span>
-    </a>
-    <a class="post" href="/writing/by-what-values-shall-i-live">
-      <time datetime="2021-07-04">Jul 2021</time>
-      <span class="title">By What Values Shall I Live?</span>
     </a>
   </div>
 

@@ -10,102 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <style>
-  h1 { margin-bottom: 1.25rem; }
-
-  .intro {
-    margin: 0 0 1.75rem;
-    text-wrap: pretty;
-  }
-
-  /* --- subscribe row ---------------------------------------------- */
-
-  .subscribe {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-bottom: clamp(2.5rem, 6vh, 3.5rem);
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-  }
-
-  .subscribe a {
-    color: var(--ink-soft);
-    text-decoration: none;
-    transition: color 120ms ease;
-  }
-
-  .subscribe a:hover,
-  .subscribe a:focus-visible { color: var(--ink); }
-
-  /* --- episodes ---------------------------------------------------- */
-
-  .episodes { border-top: 1px solid var(--rule); }
-
-  .episode {
-    display: grid;
-    grid-template-columns: 2.5rem 1fr;
-    gap: 0 1rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .number {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
-    color: var(--ink-soft);
-    padding-top: 0.45em;
-  }
-
-  .episode h2 {
-    margin: 0 0 0.3rem;
-    font-size: 1.08em;
-    font-weight: 400;
-    line-height: 1.3;
-  }
-
-  .episode h2 a {
-    color: var(--ink);
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-decoration-thickness: 0.055em;
-    text-underline-offset: 0.18em;
-    transition: text-decoration-color 140ms ease;
-  }
-
-  .episode h2 a:hover,
-  .episode h2 a:focus-visible { text-decoration-color: var(--accent); }
-
-  .episode p {
-    margin: 0 0 0.5rem;
-    color: var(--ink-soft);
-    font-size: 0.97em;
-    line-height: 1.55;
-    text-wrap: pretty;
-  }
-
-  .episode .meta {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-
-  .episode audio {
-    grid-column: 2;
-    width: 100%;
-    margin-top: 0.85rem;
-    height: 2rem;
-  }
-
-  @media (max-width: 26rem) {
-    .episode { grid-template-columns: 1fr; }
-    .number { padding-top: 0; margin-bottom: 0.4rem; }
-    .episode audio { grid-column: 1; }
-  }
+  .soon { color: var(--ink-soft); font-style: italic; }
 </style>
 </head>
 <body>
@@ -121,38 +26,7 @@
 
   <h1 class="reveal">Podcast</h1>
 
-  <p class="intro reveal">One sentence on what the show is and who you talk to. Replace this — and if you can't write it in one sentence yet, that's worth knowing before you record.</p>
-
-  <div class="subscribe reveal">
-    <a href="#">Apple</a>
-    <a href="#">Spotify</a>
-    <a href="#">YouTube</a>
-    <a href="/podcast/rss.xml">RSS</a>
-  </div>
-
-  <div class="episodes reveal">
-
-    <article class="episode">
-      <div class="number">01</div>
-      <div>
-        <h2><a href="#">Episode title goes here</a></h2>
-        <p>Two lines on what the conversation covers and why someone should press play. Specific beats clever.</p>
-        <div class="meta">Guest Name — 54 min — Aug 2026</div>
-      </div>
-      <audio controls preload="none" src=""></audio>
-    </article>
-
-    <article class="episode">
-      <div class="number">02</div>
-      <div>
-        <h2><a href="#">Episode title goes here</a></h2>
-        <p>The player sits inline so someone can listen without leaving the page. Swap the src for your episode's audio URL.</p>
-        <div class="meta">Guest Name — 61 min — Aug 2026</div>
-      </div>
-      <audio controls preload="none" src=""></audio>
-    </article>
-
-  </div>
+  <p class="soon reveal">Reining in my chaos — I&rsquo;ll work on this soon.</p>
 
 </main>
 </body>
