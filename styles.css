@@ -273,6 +273,58 @@ hr {
   .post time { flex: none; }
 }
 
+/* --- project list ------------------------------------------------ */
+
+.projects { border-top: 1px solid var(--rule); }
+
+.project {
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.project-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.project-head a {
+  display: inline-block;
+  padding: 0.2rem 0;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 0.055em;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 140ms ease;
+}
+
+.project-head a:hover,
+.project-head a:focus-visible { text-decoration-color: var(--accent); }
+
+.project .meta {
+  flex: none;
+  font-family: var(--mono);
+  font-size: var(--micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.project p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.97em;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+@media (max-width: 30rem) {
+  .project-head { flex-direction: column; gap: 0.1rem; }
+}
+
 /* --- essay pages ------------------------------------------------ */
 
 .essay h1 { margin: 0 0 0.85rem; }

@@ -1,0 +1,2 @@
+# The game must be served byte-for-byte: no line-ending normalization.
+ninja-game/index.html -text
